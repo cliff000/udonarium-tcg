@@ -328,6 +328,10 @@ export class CardStackComponent implements OnInit, AfterViewInit, OnDestroy {
     let card = this.cardStack.drawCard();
     if (card) {
       this.cardStack.update(); // todo
+      //--自分だけ見る-------------
+      card.faceDown();
+      card.owner = Network.peerId;
+      //--------------------------
       card.location.x += 100 + (Math.random() * 50);
       card.location.y += 25 + (Math.random() * 50);
       card.setLocation(this.cardStack.location.name);
