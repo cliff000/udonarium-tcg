@@ -110,6 +110,15 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
   onInputStart(e: MouseEvent | TouchEvent) {
     this.grabbingElement = e.target as HTMLElement;
     if (this.isDisable || !this.isAllowedToRotate || (e as MouseEvent).button === 1 || (e as MouseEvent).button === 2) return this.cancel();
+    
+    //--- 追加部分：カードのタップ ------------------------------
+    if (this.tabletopObject.constructor.name == "Card"){
+      if(this.rotate == 90) this.rotate = 0;
+      else if(this.rotate == 0) this.rotate = 90;
+      return this.cancel();
+    }
+    //---------------------------------------------------------
+    
     if (e.cancelable) e.preventDefault();
     e.stopPropagation();
     this.onstart.emit(e as PointerEvent);
@@ -156,6 +165,7 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     let x = pointer.x - centerX;
     let y = pointer.y - centerY;
     let rad = Math.atan2(y, x);
+
     return ((rad * 180 / Math.PI) - rotateOffset) % 360;
   }
 
