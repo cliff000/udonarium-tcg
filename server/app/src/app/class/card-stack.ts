@@ -46,7 +46,7 @@ export class CardStack extends TabletopObject {
     let length = this.cardRoot.children.length;
     for (let card of this.cards) {
       card.index = Math.random() * length;
-      card.rotate = Math.floor(Math.random() * 2) * 180;
+      card.rotate = 0;
       this.setSamePositionFor(card);
     }
     return this.cards;
