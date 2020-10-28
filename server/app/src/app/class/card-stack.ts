@@ -46,7 +46,7 @@ export class CardStack extends TabletopObject {
     let length = this.cardRoot.children.length;
     for (let card of this.cards) {
       card.index = Math.random() * length;
-      card.rotate = 0;
+      card.rotate = 0; //全て縦で上下統一する
       this.setSamePositionFor(card);
     }
     return this.cards;
