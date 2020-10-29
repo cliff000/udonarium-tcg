@@ -55,6 +55,8 @@ export class CardStackComponent implements OnInit, AfterViewInit, OnDestroy {
   get name(): string { return this.cardStack.name; }
   get rotate(): number { return this.cardStack.rotate; }
   set rotate(rotate: number) { this.cardStack.rotate = rotate; }
+  get rotateKind(): number { return this.cardStack.rotateKind; }
+  set rotateKind(rotateKind: number) { this.cardStack.rotateKind = rotateKind; }
   get zindex(): number { return this.cardStack.zindex; }
   get isShowTotal(): boolean { return this.cardStack.isShowTotal; }
   get cards(): Card[] { return this.cardStack.cards; }

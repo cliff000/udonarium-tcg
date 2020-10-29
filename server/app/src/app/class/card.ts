@@ -15,6 +15,7 @@ export enum CardState {
 export class Card extends TabletopObject {
   @SyncVar() state: CardState = CardState.FRONT;
   @SyncVar() rotate: number = 0;
+  @SyncVar() rotateKind: number = 1;
   @SyncVar() owner: string = '';
   @SyncVar() zindex: number = 0;
 

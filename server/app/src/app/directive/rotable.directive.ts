@@ -8,6 +8,7 @@ import { InputHandler } from './input-handler';
 
 export interface RotableTabletopObject extends TabletopObject {
   rotate: number;
+  rotateKind: number;
 }
 
 export interface RotableOption {
@@ -112,7 +113,7 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     if (this.isDisable || !this.isAllowedToRotate || (e as MouseEvent).button === 1 || (e as MouseEvent).button === 2) return this.cancel();
     
     //--- 追加部分：カードのタップ ------------------------------
-    if (this.tabletopObject.constructor.name == "Card"){
+    if (this.tabletopObject.rotateKind == 1){
       if(this.rotate == 0) this.rotate = 90;
       else this.rotate = 0;
       
