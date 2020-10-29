@@ -113,7 +113,6 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     if (this.isDisable || !this.isAllowedToRotate || (e as MouseEvent).button === 1 || (e as MouseEvent).button === 2) return this.cancel();
     
     //--- 追加部分：カードのタップ ------------------------------
-    console.log(this.tabletopObject.rotateKind);
     if (this.tabletopObject.rotateKind == 1){
       if(this.rotate == 0) this.rotate = 90;
       else this.rotate = 0;

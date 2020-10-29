@@ -40,6 +40,9 @@ export class TerrainComponent implements OnInit, OnDestroy, AfterViewInit {
   get width(): number { return this.adjustMinBounds(this.terrain.width); }
   get depth(): number { return this.adjustMinBounds(this.terrain.depth); }
 
+  get rotateKind(): number { return this.terrain.rotateKind; }
+  set rotateKind(rotateKind: number) { this.terrain.rotateKind = rotateKind; }
+
   get isVisibleFloor(): boolean { return 0 < this.width * this.depth; }
   get isVisibleWallTopBottom(): boolean { return 0 < this.width * this.height; }
   get isVisibleWallLeftRight(): boolean { return 0 < this.depth * this.height; }

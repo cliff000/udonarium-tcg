@@ -42,8 +42,8 @@ export class CardComponent implements OnInit, OnDestroy, AfterViewInit {
   set state(state: CardState) { this.card.state = state; }
   get rotate(): number { return this.card.rotate; }
   set rotate(rotate: number) { this.card.rotate = rotate; }
-  get rotateKind(): number { return this.rotateKind; }
-  set rotateKind(rotateKind: number) { this.rotateKind = rotateKind; }
+  get rotateKind(): number { return this.card.rotateKind; }
+  set rotateKind(rotateKind: number) { this.card.rotateKind = rotateKind; }
   get owner(): string { return this.card.owner; }
   set owner(owner: string) { this.card.owner = owner; }
   get zindex(): number { return this.card.zindex; }

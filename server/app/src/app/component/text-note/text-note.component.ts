@@ -31,8 +31,8 @@ export class TextNoteComponent implements OnInit, OnDestroy, AfterViewInit {
   get imageFile(): ImageFile { return this.textNote.imageFile; }
   get rotate(): number { return this.textNote.rotate; }
   set rotate(rotate: number) { this.textNote.rotate = rotate; }
-  get rotateKind(): number { return this.rotateKind; }
-  set rotateKind(rotateKind: number) { this.rotateKind = rotateKind; }
+  get rotateKind(): number { return this.textNote.rotateKind; }
+  set rotateKind(rotateKind: number) { this.textNote.rotateKind = rotateKind; }
   get height(): number { return this.adjustMinBounds(this.textNote.height); }
   get width(): number { return this.adjustMinBounds(this.textNote.width); }
 
