@@ -6,6 +6,7 @@ import { TabletopObject } from './tabletop-object';
 @SyncObject('character')
 export class GameCharacter extends TabletopObject {
   @SyncVar() rotate: number = 0;
+  @SyncVar() rotateKind: number = 0;
   @SyncVar() roll: number = 0;
 
   get name(): string { return this.getCommonValue('name', ''); }
