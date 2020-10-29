@@ -11,6 +11,7 @@ import { moveToTopmost } from './tabletop-object-util';
 @SyncObject('card-stack')
 export class CardStack extends TabletopObject {
   @SyncVar() rotate: number = 0;
+  @SyncVar() rotateKind: number = 0;
   @SyncVar() zindex: number = 0;
   @SyncVar() owner: string = '';
   @SyncVar() isShowTotal: boolean = true;

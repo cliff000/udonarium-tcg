@@ -69,6 +69,8 @@ export class DiceSymbolComponent implements OnInit, AfterViewInit, OnDestroy {
   set owner(owner: string) { this.diceSymbol.owner = owner; }
   get rotate(): number { return this.diceSymbol.rotate; }
   set rotate(rotate: number) { this.diceSymbol.rotate = rotate; }
+  get rotateKind(): number { return this.rotateKind; }
+  set rotateKind(rotateKind: number) { this.rotateKind = rotateKind; }
 
   get name(): string { return this.diceSymbol.name; }
   set name(name: string) { this.diceSymbol.name = name; }

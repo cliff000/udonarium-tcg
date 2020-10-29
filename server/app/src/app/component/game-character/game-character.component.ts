@@ -54,6 +54,8 @@ export class GameCharacterComponent implements OnInit, OnDestroy, AfterViewInit 
   get imageFile(): ImageFile { return this.gameCharacter.imageFile; }
   get rotate(): number { return this.gameCharacter.rotate; }
   set rotate(rotate: number) { this.gameCharacter.rotate = rotate; }
+  get rotateKind(): number { return this.rotateKind; }
+  set rotateKind(rotateKind: number) { this.rotateKind = rotateKind; }
   get roll(): number { return this.gameCharacter.roll; }
   set roll(roll: number) { this.gameCharacter.roll = roll; }
 
