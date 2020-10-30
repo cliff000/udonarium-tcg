@@ -114,7 +114,7 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     
     //--- 追加部分：カードのタップ ------------------------------
     if (this.tabletopObject.rotateKind == 1){
-      if(this.rotate == 0) this.rotate = 90;
+      if(this.rotate == 0) this.rotate = -90;
       else this.rotate = 0;
       
       e.stopPropagation();
