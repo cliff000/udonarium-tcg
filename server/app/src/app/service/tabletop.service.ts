@@ -12,6 +12,8 @@ import { DiceSymbol, DiceType } from '@udonarium/dice-symbol';
 import { GameCharacter } from '@udonarium/game-character';
 import { GameTable } from '@udonarium/game-table';
 import { GameTableMask } from '@udonarium/game-table-mask';
+import { GridType } from '@udonarium/game-table';
+import { FilterType } from '@udonarium/game-table';
 import { PeerCursor } from '@udonarium/peer-cursor';
 import { PresetSound, SoundEffect } from '@udonarium/sound-effect';
 import { TableSelecter } from '@udonarium/table-selecter';
@@ -326,24 +328,28 @@ export class TabletopService {
     let gameTable = new GameTable('gameTable');
     let testBgFile: ImageFile = null;
     let bgFileContext = ImageFile.createEmpty('testTableBackgroundImage_image').toContext();
-    bgFileContext.url = './assets/images/BG10a_80.jpg';
+    bgFileContext.url = './assets/images/BG_gr1.png';
     testBgFile = ImageStorage.instance.add(bgFileContext);
-    //let testDistanceFile: ImageFile = null;
-    //let distanceFileContext = ImageFile.createEmpty('testTableDistanceviewImage_image').toContext();
-    //distanceFileContext.url = './assets/images/BG00a1_80.jpg';
-    //testDistanceFile = ImageStorage.instance.add(distanceFileContext);
-    gameTable.name = '最初のテーブル';
+    let testDistanceFile: ImageFile = null;
+    let distanceFileContext = ImageFile.createEmpty('testTableDistanceviewImage_image').toContext();
+    distanceFileContext.url = './assets/images/BG10a_80.jpg';
+    testDistanceFile = ImageStorage.instance.add(distanceFileContext);
+
+    gameTable.name = 'ゲートルーラー';
     gameTable.imageIdentifier = testBgFile.identifier;
-    //gameTable.backgroundImageIdentifier = testDistanceFile.identifier;
-    gameTable.width = 20;
-    gameTable.height = 15;
+    gameTable.backgroundImageIdentifier = testDistanceFile.identifier;
+    gameTable.backgroundFilterType = FilterType.WHITE;
+    gameTable.width = 21;
+    gameTable.height = 34;
+    gameTable.gridType = GridType.HEX_VERTICAL;
+    gameTable.gridColor = '#ffffff22';
     gameTable.initialize();
 
     tableSelecter.viewTableIdentifier = gameTable.identifier;
   }
 
   makeDefaultTabletopObjects() {
-    let testCharacter: GameCharacter = null;
+    /*let testCharacter: GameCharacter = null;
     let testFile: ImageFile = null;
     let fileContext: ImageContext = null;
 
@@ -396,7 +402,7 @@ export class TabletopService {
     testCharacter.initialize();
     testCharacter.location.x = 5 * 50;
     testCharacter.location.y = 13 * 50;
-    testCharacter.createTestGameDataElement('キャラクターC', 1, testFile.identifier);
+    testCharacter.createTestGameDataElement('キャラクターC', 1, testFile.identifier);*/
   }
 
   getContextMenuActionsForCreateObject(position: PointerCoordinate): ContextMenuAction[] {

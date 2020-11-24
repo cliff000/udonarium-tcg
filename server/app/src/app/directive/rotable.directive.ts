@@ -112,17 +112,6 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     this.grabbingElement = e.target as HTMLElement;
     if (this.isDisable || !this.isAllowedToRotate || (e as MouseEvent).button === 1 || (e as MouseEvent).button === 2) return this.cancel();
     
-    //--- 追加部分：カードのタップ ------------------------------
-    if (this.tabletopObject.rotateKind == 1){
-      if(this.rotate == 0) this.rotate = -90;
-      else this.rotate = 0;
-      
-      e.stopPropagation();
-      this.snapToPolygonal();
-      return this.cancel();
-    }
-    //---------------------------------------------------------
-    
     if (e.cancelable) e.preventDefault();
     e.stopPropagation();
     this.onstart.emit(e as PointerEvent);
@@ -130,6 +119,26 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     let pointer = PointerDeviceService.convertLocalToLocal(this.input.pointer, this.grabbingElement, this.input.target.parentElement);
     this.rotateOffset = this.calcRotate(pointer, this.rotate);
     this.setAnimatedTransition(false);
+
+    //--- 追加部分：カードのタップ ------------------------------
+    if (this.tabletopObject.rotateKind == 1){
+      //クリックの方向に90度回転(中途半端な角度なら正す)
+      var offset180 = this.rotateOffset % 180;
+      if(offset180 >= 0 && offset180 < 90){
+        this.rotate = 90 * Math.floor(this.rotate / 90) - 90;
+      }else if(offset180 >= 90 && offset180 < 180){
+        this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
+      }else if(offset180 >= -90 && offset180 < 0){
+        this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
+      }else if(offset180 >= -180 && offset180 < -90){
+        this.rotate = 90 * Math.floor(this.rotate / 90) - 90;
+      }
+
+      e.stopPropagation();
+      this.snapToPolygonal();
+      return this.cancel();
+    }
+    //---------------------------------------------------------
   }
 
   onInputMove(e: MouseEvent | TouchEvent) {
