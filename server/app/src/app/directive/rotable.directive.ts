@@ -121,23 +121,28 @@ export class RotableDirective implements AfterViewInit, OnDestroy {
     this.setAnimatedTransition(false);
 
     //--- 追加部分：カードのタップ ------------------------------
-    if (this.tabletopObject.rotateKind == 1){
-      //クリックの方向に90度回転(中途半端な角度なら正す)
-      var offset180 = this.rotateOffset % 180;
-      if(offset180 >= 0 && offset180 < 90){
-        this.rotate = 90 * Math.floor(this.rotate / 90) - 90;
-      }else if(offset180 >= 90 && offset180 < 180){
-        this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
-      }else if(offset180 >= -90 && offset180 < 0){
-        this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
-      }else if(offset180 >= -180 && offset180 < -90){
-        this.rotate = 90 * Math.floor(this.rotate / 90) - 90;
+    try{
+      if (this.tabletopObject.rotateKind == 1){
+        //クリックの方向に90度回転(中途半端な角度なら正す)
+        var offset180 = this.rotateOffset % 180;
+        if(offset180 >= 0 && offset180 < 90){
+          this.rotate = 90 * Math.floor((this.rotate + 89) / 90) - 90;
+        }else if(offset180 >= 90 && offset180 < 180){
+          this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
+        }else if(offset180 >= -90 && offset180 < 0){
+          this.rotate = 90 * Math.floor(this.rotate / 90) + 90;
+        }else if(offset180 >= -180 && offset180 < -90){
+          this.rotate = 90 * Math.floor((this.rotate + 89) / 90) - 90;
+        }
+  
+        e.stopPropagation();
+        this.snapToPolygonal();
+        return this.cancel();
       }
-
-      e.stopPropagation();
-      this.snapToPolygonal();
-      return this.cancel();
-    }
+    } catch (e) {
+      console.log(`エラー発生 ${e}`);
+    } 
+    
     //---------------------------------------------------------
   }
 
